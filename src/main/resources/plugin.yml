@@ -3,3 +3,9 @@ version: '${version}'
 main: top.zoyn.grus.Grus
 api-version: 1.15
 authors: [ Zoyn ]
+commands:
+  grus:
+    description: "Main command"
+    aliases:
+      - "xiuxian"
+      - "xian"
