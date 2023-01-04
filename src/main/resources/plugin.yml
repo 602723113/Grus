@@ -1,0 +1,5 @@
+name: Grus
+version: '${version}'
+main: top.zoyn.grus.Grus
+api-version: 1.15
+authors: [ Zoyn ]
