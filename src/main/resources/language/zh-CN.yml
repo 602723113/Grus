@@ -11,3 +11,4 @@ help:
   - " &e/grus help &6查阅帮助 "
 
 console-set-language: "已设置语言: "
+console-load-lingem: "已读取灵根: %num% 个"

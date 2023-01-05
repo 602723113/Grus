@@ -11,3 +11,4 @@ help:
   - " &e/grus help &6looking for help "
 
 console-set-language: "Set language: "
+console-load-lingem: "Load lingem: %num%"

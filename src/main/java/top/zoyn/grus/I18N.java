@@ -12,7 +12,8 @@ public enum I18N {
     MESSAGE_PREFIX("message-prefix"),
     UNKNOWN_COMMAND("unknown-command"),
     NO_PERMISSION("no-permission"),
-    CONSOLE_SET_LANGUAGE("console-set-language");
+    CONSOLE_SET_LANGUAGE("console-set-language"),
+    CONSOLE_LOAD_LINGEM("console-load-lingem");
 
     private final String key;
     private Object message;

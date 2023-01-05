@@ -3,7 +3,7 @@ package top.zoyn.grus.api;
 import top.zoyn.grus.Grus;
 import top.zoyn.grus.manager.BoundaryManager;
 import top.zoyn.grus.manager.LanguageManager;
-import top.zoyn.grus.manager.LingamManager;
+import top.zoyn.grus.manager.LingemManager;
 
 public class GrusAPI {
 
@@ -28,10 +28,10 @@ public class GrusAPI {
     /**
      * 获取 灵根管理器
      *
-     * @return {@link LingamManager}
+     * @return {@link LingemManager}
      */
-    public static LingamManager getLingamManager() {
-        return Grus.getInstance().getLingamManager();
+    public static LingemManager getLingemManager() {
+        return Grus.getInstance().getLingemManager();
     }
 
 }
