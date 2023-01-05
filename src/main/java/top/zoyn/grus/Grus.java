@@ -2,7 +2,9 @@ package top.zoyn.grus;
 
 import org.bukkit.plugin.java.JavaPlugin;
 import top.zoyn.grus.command.GrusCommand;
+import top.zoyn.grus.manager.BoundaryManager;
 import top.zoyn.grus.manager.LanguageManager;
+import top.zoyn.grus.manager.LingamManager;
 
 import java.io.File;
 
@@ -11,6 +13,8 @@ public final class Grus extends JavaPlugin {
     private static Grus instance;
 
     private LanguageManager languageManager;
+    private BoundaryManager boundaryManager;
+    private LingamManager lingamManager;
 
     @Override
     public void onEnable() {
@@ -21,6 +25,9 @@ public final class Grus extends JavaPlugin {
         saveResource("language" + File.separator + "en-US.yml", false);
 
         languageManager = new LanguageManager();
+        boundaryManager = new BoundaryManager();
+        lingamManager = new LingamManager();
+
         getCommand("grus").setExecutor(new GrusCommand());
     }
 
@@ -32,4 +39,11 @@ public final class Grus extends JavaPlugin {
         return languageManager;
     }
 
+    public BoundaryManager getBoundaryManager() {
+        return boundaryManager;
+    }
+
+    public LingamManager getLingamManager() {
+        return lingamManager;
+    }
 }
