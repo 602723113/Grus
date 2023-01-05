@@ -8,7 +8,14 @@ unknown-command: "&c未知命令!"
 no-permission: "&c权限不足!"
 help:
   - "&7===== &e[&6Grus &f&l| &6修仙&e] &7====="
+  - " &e/grus me &6查看当前境界 "
   - " &e/grus help &6查阅帮助 "
+me:
+  - "尊敬的 %player_name%"
+  - "您当前的灵根属性: %%"
+  - "您当前的修仙境界为: %boundary_level%"
+  - "您当前的修为灵力值: %boundary_exp%"
 
 console-set-language: "已设置语言: "
 console-load-lingem: "已读取灵根: %num% 个"
+console-must-be-player: "&c你必须是一名玩家!"

@@ -7,18 +7,20 @@ import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import top.zoyn.grus.I18N;
 import top.zoyn.grus.command.subcommand.HelpCommand;
+import top.zoyn.grus.command.subcommand.MeCommand;
 
 import java.util.Map;
 
 public class GrusCommand implements CommandExecutor {
 
-    private static Map<String, SubCommand> commandMap = Maps.newHashMap();
+    private static final Map<String, SubCommand> commandMap = Maps.newHashMap();
 
     /**
      * 初始化指令
      */
     public GrusCommand() {
         registerCommand("help", new HelpCommand());
+        registerCommand("me", new MeCommand());
     }
 
     private void registerCommand(String commandName, SubCommand subCommand) {

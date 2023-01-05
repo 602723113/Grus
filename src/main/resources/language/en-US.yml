@@ -12,3 +12,4 @@ help:
 
 console-set-language: "Set language: "
 console-load-lingem: "Load lingem: %num%"
+console-must-be-player: "&cYou must be a player!"

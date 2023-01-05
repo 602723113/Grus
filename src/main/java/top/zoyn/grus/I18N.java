@@ -9,11 +9,13 @@ import java.util.stream.Collectors;
 public enum I18N {
 
     HELP("help"),
+    ME("me"),
     MESSAGE_PREFIX("message-prefix"),
     UNKNOWN_COMMAND("unknown-command"),
     NO_PERMISSION("no-permission"),
     CONSOLE_SET_LANGUAGE("console-set-language"),
-    CONSOLE_LOAD_LINGEM("console-load-lingem");
+    CONSOLE_LOAD_LINGEM("console-load-lingem"),
+    CONSOLE_MUST_BE_PLAYER("console-must-be-player");
 
     private final String key;
     private Object message;
