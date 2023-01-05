@@ -17,6 +17,10 @@ dependencies {
     compileOnly 'org.bukkit:bukkit:1.15.2-R0.1-SNAPSHOT'
 }
 
+tasks.withType(JavaCompile) {
+    options.encoding = "UTF-8"
+}
+
 def targetJavaVersion = 8
 java {
     def javaVersion = JavaVersion.toVersion(targetJavaVersion)
