@@ -1,10 +1,12 @@
 package top.zoyn.grus;
 
+import org.bukkit.Bukkit;
 import org.bukkit.plugin.java.JavaPlugin;
 import top.zoyn.grus.command.GrusCommand;
 import top.zoyn.grus.manager.BoundaryManager;
 import top.zoyn.grus.manager.LanguageManager;
 import top.zoyn.grus.manager.LingemManager;
+import top.zoyn.grus.papi.GrusExpansion;
 
 import java.io.File;
 
@@ -29,6 +31,11 @@ public final class Grus extends JavaPlugin {
         lingemManager = new LingemManager();
 
         getCommand("grus").setExecutor(new GrusCommand());
+
+        // PlaceholderAPI 注册
+        if (Bukkit.getPluginManager().getPlugin("PlaceholderAPI") != null) {
+            new GrusExpansion().register();
+        }
     }
 
     public static Grus getInstance() {

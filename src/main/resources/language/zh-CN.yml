@@ -6,15 +6,16 @@
 message-prefix: "&e[&6Grus&e] "
 unknown-command: "&c未知命令!"
 no-permission: "&c权限不足!"
+no-lingem: "&f无灵根"
 help:
   - "&7===== &e[&6Grus &f&l| &6修仙&e] &7====="
   - " &e/grus me &6查看当前境界 "
   - " &e/grus help &6查阅帮助 "
 me:
-  - "尊敬的 %player_name%"
-  - "您当前的灵根属性: %%"
-  - "您当前的修仙境界为: %boundary_level%"
-  - "您当前的修为灵力值: %boundary_exp%"
+  - "&e尊敬的 &f%player_name%"
+  - "&6您当前的灵根属性: &e%grus_lingem%"
+  - "&6您当前的修仙境界为: &e%grus_boundary_level%"
+  - "&6您当前的修为灵力值: &e%grus_boundary_exp%"
 
 console-set-language: "已设置语言: "
 console-load-lingem: "已读取灵根: %num% 个"

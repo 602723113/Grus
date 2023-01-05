@@ -2,6 +2,7 @@ package top.zoyn.grus.manager;
 
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
+import org.bukkit.OfflinePlayer;
 import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.Player;
@@ -98,7 +99,7 @@ public class LingemManager {
      *
      * @return 灵根列表
      */
-    public List<String> getPlayerLingem(Player player) {
+    public List<String> getPlayerLingem(OfflinePlayer player) {
         if (hasLingem(player)) {
             return playerLingem.get(player.getUniqueId());
         }
@@ -111,7 +112,7 @@ public class LingemManager {
      * @param player 要判断的玩家
      * @return 如果有灵根则返回true
      */
-    public boolean hasLingem(Player player) {
+    public boolean hasLingem(OfflinePlayer player) {
         if (playerLingem.containsKey(player.getUniqueId())) {
             return !playerLingem.get(player.getUniqueId()).isEmpty();
         }
@@ -124,7 +125,7 @@ public class LingemManager {
      * @param player 指定的玩家
      * @param lingem 指定的灵根
      */
-    public void removeLingem(Player player, String lingem) {
+    public void removeLingem(OfflinePlayer player, String lingem) {
         if (hasLingem(player)) {
             playerLingem.get(player.getUniqueId()).remove(lingem);
         }
@@ -135,7 +136,7 @@ public class LingemManager {
      *
      * @param player 指定的玩家
      */
-    public void resetLingem(Player player) {
+    public void resetLingem(OfflinePlayer player) {
         // 移除数据
         playerLingem.remove(player.getUniqueId());
 
@@ -161,7 +162,7 @@ public class LingemManager {
      * @param player 指定的玩家
      * @param lingem 指定的灵根
      */
-    public void addLingem(Player player, String lingem) {
+    public void addLingem(OfflinePlayer player, String lingem) {
         if (hasLingem(player)) {
             playerLingem.get(player.getUniqueId()).add(lingem);
         } else {

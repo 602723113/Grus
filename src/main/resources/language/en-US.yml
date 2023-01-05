@@ -6,10 +6,16 @@
 message-prefix: "&e[&6Grus&e] "
 unknown-command: "&cunknown command!"
 no-permission: "&cno permission!"
+no-lingem: "&fThere is no lingem."
 help:
   - "&7===== &e[&6Grus&e] &7====="
+  - " &e/grus me &6check your stats "
   - " &e/grus help &6looking for help "
-
+me:
+  - "&eDear &f%player_name%"
+  - "&6Your current Lingem attribute: &e%grus_lingem%"
+  - "&6Your current boundary level: &e%grus_boundary_level%"
+  - "&6Your current boundary experience: &e%grus_boundary_exp%"
 console-set-language: "Set language: "
 console-load-lingem: "Load lingem: %num%"
 console-must-be-player: "&cYou must be a player!"

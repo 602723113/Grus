@@ -1,5 +1,6 @@
 package top.zoyn.grus.command.subcommand;
 
+import me.clip.placeholderapi.PlaceholderAPI;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import top.zoyn.grus.I18N;
@@ -15,7 +16,8 @@ public class MeCommand implements SubCommand {
         }
         Player player = (Player) sender;
         I18N.ME.getAsStringList().forEach(s -> {
-            player.sendMessage(s.replace("%player_name%", player.getName()));
+            // 这里直接套用 PlaceholderAPI 里面的变量
+            player.sendMessage(PlaceholderAPI.setPlaceholders(player, s));
         });
     }
 }

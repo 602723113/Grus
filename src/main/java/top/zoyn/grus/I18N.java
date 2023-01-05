@@ -13,6 +13,7 @@ public enum I18N {
     MESSAGE_PREFIX("message-prefix"),
     UNKNOWN_COMMAND("unknown-command"),
     NO_PERMISSION("no-permission"),
+    NO_LINGEM("no-lingem"),
     CONSOLE_SET_LANGUAGE("console-set-language"),
     CONSOLE_LOAD_LINGEM("console-load-lingem"),
     CONSOLE_MUST_BE_PLAYER("console-must-be-player");
