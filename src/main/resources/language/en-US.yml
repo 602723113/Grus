@@ -1,0 +1,13 @@
+#################################################
+# en-US 英语洋文
+# Edit By: Zoyn
+#################################################
+
+message-prefix: "&e[&6Grus&e] "
+unknown-command: "&cunknown command!"
+no-permission: "&cno permission!"
+help:
+  - "&7===== &e[&6Grus&e] &7====="
+  - " &e/grus help &6looking for help "
+
+console-set-language: "Set language: "

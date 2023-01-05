@@ -1,0 +1,13 @@
+#################################################
+# zh-CN 中文
+# Edit By: Zoyn
+#################################################
+
+message-prefix: "&e[&6Grus&e] "
+unknown-command: "&c未知命令!"
+no-permission: "&c权限不足!"
+help:
+  - "&7===== &e[&6Grus &f&l| &6修仙&e] &7====="
+  - " &e/grus help &6查阅帮助 "
+
+console-set-language: "已设置语言: "
