@@ -3,6 +3,7 @@ version: '${version}'
 main: top.zoyn.grus.Grus
 api-version: 1.15
 authors: [ Zoyn ]
+depend: [ PlaceholderAPI ]
 commands:
   grus:
     description: "Main command"
