@@ -64,17 +64,17 @@ public class BoundaryManager {
             data.getKeys(false).forEach(uid -> playerBoundary.put(UUID.fromString(uid), boundaryDataConfig.getDouble("data." + uid)));
         }
 
-        ConfigurationSection lingemConfig = Grus.getInstance().getConfig().getConfigurationSection("boundary-settings");
+        ConfigurationSection boundaryConfig = Grus.getInstance().getConfig().getConfigurationSection("boundary-settings");
         // config 预设数据
-        lingemConfig.getConfigurationSection("level")
+        boundaryConfig.getConfigurationSection("level")
                 .getKeys(false)
-                .forEach(section -> defaultBoundary.put(section, lingemConfig.getDouble("level." + section)));
-        lingemConfig.getConfigurationSection("color-code")
+                .forEach(section -> defaultBoundary.put(section, boundaryConfig.getDouble("level." + section)));
+        boundaryConfig.getConfigurationSection("color-code")
                 .getKeys(false)
-                .forEach(section -> boundaryColor.put(section, ChatColor.translateAlternateColorCodes('&', lingemConfig.getString("color-code." + section))));
+                .forEach(section -> boundaryColor.put(section, ChatColor.translateAlternateColorCodes('&', boundaryConfig.getString("color-code." + section))));
 
         // 无境界时的显示名
-        NO_BOUNDARY_DISPLAY = ChatColor.translateAlternateColorCodes('&', lingemConfig.getString("no-boundary-display"));
+        NO_BOUNDARY_DISPLAY = ChatColor.translateAlternateColorCodes('&', boundaryConfig.getString("no-boundary-display"));
         Logger.info(I18N.CONSOLE_LOAD_BOUNDARY.getMessage()
                 .replace("%num%", "" + defaultBoundary.keySet().size())
                 .replace("%content%", defaultBoundary.keySet().toString()));
