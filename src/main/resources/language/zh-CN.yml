@@ -7,6 +7,7 @@ message-prefix: "&e[&6Grus&e] "
 unknown-command: "&c未知命令!"
 no-permission: "&c权限不足!"
 no-lingem: "&f无灵根"
+you-have-gained-exp: "&e你得到了 &6%exp% 点灵气值"
 help:
   - "&7===== &e[&6Grus &f&l| &6修仙&e] &7====="
   - " &e/grus me &6查看当前境界 "
@@ -20,4 +21,5 @@ me:
 console-set-language: "已设置语言: "
 console-load-lingem: "已读取灵根(共 %num% 个): %content%"
 console-load-boundary: "已读取境界设定(共 %num% 个): %content%"
+console-load-boundary-exp-drop: "已读取境界经验掉落设置"
 console-must-be-player: "&c你必须是一名玩家!"

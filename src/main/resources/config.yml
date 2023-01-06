@@ -50,3 +50,37 @@ lingem-settings:
     水: 0.2
     火: 0.2
     土: 0.2
+
+# 境界经验值掉落设定
+boundary-exp-drop-settings:
+  # 境界经验值怪物掉落模式
+  # 可用选项: vanilla/none
+  # vanilla: 原版掉落模式, 适用于无其他RPG元素的生存服务器(当然 生存+RPG 也可以 只需要 MythicMobs 调用指令即可 但数值需要进行更改)
+  # none: 无掉落模式, 适用于安装有自定义实体的插件的自定义RPG实体服务器
+  mode: "vanilla"
+  monster:
+    blaze: 10
+    cave-spider: 6
+    creeper: 10
+    elder-guardian: 40
+    enderman: 20
+    endermite: 4
+    evoker: 12
+    giant: 50
+    guardian: 15
+    husk: 10
+    illager: 12
+    illusioner: 16
+    pig-zombie: 10
+    silverfish: 4
+    skeleton: 10
+    spell-caster: 10
+    spider: 8
+    stray: 10
+    vex: 7
+    vindicator: 12
+    witch: 13
+    wither: 150
+    wither-skeleton: 10
+    zombie: 10
+    zombie-villager: 10

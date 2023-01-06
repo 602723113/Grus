@@ -14,9 +14,11 @@ public enum I18N {
     UNKNOWN_COMMAND("unknown-command"),
     NO_PERMISSION("no-permission"),
     NO_LINGEM("no-lingem"),
+    YOU_HAVE_GAINED_EXP("you-have-gained-exp"),
     CONSOLE_SET_LANGUAGE("console-set-language"),
     CONSOLE_LOAD_LINGEM("console-load-lingem"),
     CONSOLE_LOAD_BOUNDARY("console-load-boundary"),
+    CONSOLE_LOAD_BOUNDARY_EXP_DROP("console-load-boundary-exp-drop"),
     CONSOLE_MUST_BE_PLAYER("console-must-be-player");
 
     private final String key;
