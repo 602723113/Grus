@@ -14,12 +14,12 @@ help:
   - " &e/grus help &6查阅帮助 "
 me:
   - "&e尊敬的 &f%player_name%"
-  - "&6您当前的灵根属性: &e%grus_lingem%"
-  - "&6您当前的修仙境界为: &e%grus_boundary_level%"
-  - "&6您当前的修为灵力值: &e%grus_boundary_exp%"
+  - "&6您当前的灵根: &e%grus_lingem%"
+  - "&6您当前的境界为: &e%grus_boundary_level%"
+  - "&6您当前的修为共: &e%grus_boundary_exp%"
 
 console-set-language: "已设置语言: "
 console-load-lingem: "已读取灵根(共 %num% 个): %content%"
 console-load-boundary: "已读取境界设定(共 %num% 个): %content%"
-console-load-boundary-exp-drop: "已读取境界经验掉落设置"
+console-load-boundary-exp-drop: "已读取修为掉落设置"
 console-must-be-player: "&c你必须是一名玩家!"
