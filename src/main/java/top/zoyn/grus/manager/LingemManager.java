@@ -57,10 +57,15 @@ public class LingemManager {
         // config 预设数据
         lingemConfig.getConfigurationSection("chances").getKeys(false).forEach(section -> lingemChances.put(section, lingemConfig.getDouble("chances." + section)));
 
-        Logger.info(I18N.CONSOLE_LOAD_LINGEM.getMessage().replace("%num%", "" + lingemChances.keySet().size()));
+        Logger.info(I18N.CONSOLE_LOAD_LINGEM.getMessage()
+                .replace("%num%", "" + lingemChances.keySet().size())
+                .replace("%content%", lingemChances.keySet().toString()));
     }
 
     public void reload() {
+        lingemChances.clear();
+        playerLingem.clear();
+
         lingemFolder = new File(Grus.getInstance().getDataFolder(), "data");
         lingemFile = new File(lingemFolder, "Lingem-data.yml");
         // 灵根数据文件创建
@@ -83,7 +88,9 @@ public class LingemManager {
         // config 预设数据
         lingemConfig.getConfigurationSection("chances").getKeys(false).forEach(section -> lingemChances.put(section, lingemConfig.getDouble("chances." + section)));
 
-        Logger.info(I18N.CONSOLE_LOAD_LINGEM.getMessage().replace("%num%", "" + lingemChances.keySet().size()));
+        Logger.info(I18N.CONSOLE_LOAD_LINGEM.getMessage()
+                .replace("%num%", "" + lingemChances.keySet().size())
+                .replace("%content%", lingemChances.keySet().toString()));
     }
 
     public Map<UUID, List<String>> getPlayerLingem() {

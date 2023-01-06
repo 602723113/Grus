@@ -18,5 +18,6 @@ me:
   - "&6您当前的修为灵力值: &e%grus_boundary_exp%"
 
 console-set-language: "已设置语言: "
-console-load-lingem: "已读取灵根: %num% 个"
+console-load-lingem: "已读取灵根(共 %num% 个): %content%"
+console-load-boundary: "已读取境界设定(共 %num% 个): %content%"
 console-must-be-player: "&c你必须是一名玩家!"

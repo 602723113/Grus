@@ -16,6 +16,7 @@ public enum I18N {
     NO_LINGEM("no-lingem"),
     CONSOLE_SET_LANGUAGE("console-set-language"),
     CONSOLE_LOAD_LINGEM("console-load-lingem"),
+    CONSOLE_LOAD_BOUNDARY("console-load-boundary"),
     CONSOLE_MUST_BE_PLAYER("console-must-be-player");
 
     private final String key;

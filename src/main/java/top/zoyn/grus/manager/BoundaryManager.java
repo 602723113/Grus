@@ -1,7 +1,17 @@
 package top.zoyn.grus.manager;
 
 import com.google.common.collect.Maps;
+import org.bukkit.ChatColor;
+import org.bukkit.OfflinePlayer;
+import org.bukkit.configuration.ConfigurationSection;
+import org.bukkit.configuration.file.FileConfiguration;
+import top.zoyn.grus.Grus;
+import top.zoyn.grus.I18N;
+import top.zoyn.grus.utils.ConfigurationUtils;
+import top.zoyn.grus.utils.Logger;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.Map;
 import java.util.UUID;
 
@@ -20,6 +30,166 @@ public class BoundaryManager {
     /**
      * 预设境界 来源于 config 当中
      */
-    private Map<UUID, Double> defaultBoundary = Maps.newHashMap();
+    private Map<String, Double> defaultBoundary = Maps.newLinkedHashMap();
+    /**
+     * 预设境界的显示设定
+     */
+    private Map<String, String> boundaryColor = Maps.newHashMap();
+
+    /**
+     * 无境界时的显示名
+     */
+    private static String NO_BOUNDARY_DISPLAY;
+
+    private File boundaryFile;
+    private File boundaryFolder;
+    private FileConfiguration boundaryDataConfig;
+
+    public BoundaryManager() {
+        boundaryFolder = new File(Grus.getInstance().getDataFolder(), "data");
+        boundaryFile = new File(boundaryFolder, "boundary-data.yml");
+        // 玩家境界灵气数据文件创建
+        if (!boundaryFile.exists()) {
+            boundaryFolder.mkdirs();
+            try {
+                boundaryFile.createNewFile();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+        boundaryDataConfig = ConfigurationUtils.loadYML(boundaryFile);
+        // 玩家数据
+        ConfigurationSection data = boundaryDataConfig.getConfigurationSection("data");
+        if (data != null) {
+            data.getKeys(false).forEach(uid -> playerBoundary.put(UUID.fromString(uid), boundaryDataConfig.getDouble("data." + uid)));
+        }
+
+        ConfigurationSection lingemConfig = Grus.getInstance().getConfig().getConfigurationSection("boundary-settings");
+        // config 预设数据
+        lingemConfig.getConfigurationSection("level")
+                .getKeys(false)
+                .forEach(section -> defaultBoundary.put(section, lingemConfig.getDouble("level." + section)));
+        lingemConfig.getConfigurationSection("color-code")
+                .getKeys(false)
+                .forEach(section -> boundaryColor.put(section, ChatColor.translateAlternateColorCodes('&', lingemConfig.getString("color-code." + section))));
+
+        // 无境界时的显示名
+        NO_BOUNDARY_DISPLAY = ChatColor.translateAlternateColorCodes('&', lingemConfig.getString("no-boundary-display"));
+        Logger.info(I18N.CONSOLE_LOAD_BOUNDARY.getMessage()
+                .replace("%num%", "" + defaultBoundary.keySet().size())
+                .replace("%content%", defaultBoundary.keySet().toString()));
+    }
+
+    public void reload() {
+        defaultBoundary.clear();
+        playerBoundary.clear();
+
+        boundaryFolder = new File(Grus.getInstance().getDataFolder(), "data");
+        boundaryFile = new File(boundaryFolder, "boundary-data.yml");
+        // 玩家境界灵气数据文件创建
+        if (!boundaryFile.exists()) {
+            boundaryFolder.mkdirs();
+            try {
+                boundaryFile.createNewFile();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+        boundaryDataConfig = ConfigurationUtils.loadYML(boundaryFile);
+        // 玩家数据
+        ConfigurationSection data = boundaryDataConfig.getConfigurationSection("data");
+        if (data != null) {
+            data.getKeys(false).forEach(uid -> playerBoundary.put(UUID.fromString(uid), boundaryDataConfig.getDouble("data." + uid)));
+        }
+
+        ConfigurationSection lingemConfig = Grus.getInstance().getConfig().getConfigurationSection("boundary-settings");
+        // config 预设数据
+        lingemConfig.getConfigurationSection("level")
+                .getKeys(false)
+                .forEach(section -> defaultBoundary.put(section, lingemConfig.getDouble("level." + section)));
+        lingemConfig.getConfigurationSection("color-code")
+                .getKeys(false)
+                .forEach(section -> boundaryColor.put(section, ChatColor.translateAlternateColorCodes('&', lingemConfig.getString("color-code." + section))));
+
+        // 无境界时的显示名
+        NO_BOUNDARY_DISPLAY = ChatColor.translateAlternateColorCodes('&', lingemConfig.getString("no-boundary-display"));
+
+        Logger.info(I18N.CONSOLE_LOAD_BOUNDARY.getMessage()
+                .replace("%num%", "" + defaultBoundary.keySet().size())
+                .replace("%content%", defaultBoundary.keySet().toString()));
+    }
+
+    /**
+     * 取得境界的展示名
+     *
+     * @param boundary 指定的境界
+     * @return 如果无法找到对应的境界展示名则会返回 无境界时的展示名
+     */
+    public String getDisplayBoundary(String boundary) {
+        if (boundaryColor.containsKey(boundary)) {
+            return boundary;
+        }
+        return NO_BOUNDARY_DISPLAY;
+    }
+
+    /**
+     * 获取玩家对应的境界
+     *
+     * @param player 指定的玩家
+     * @return 玩家当前的境界
+     */
+    public String getPlayerBoundary(OfflinePlayer player) {
+        String boundary = NO_BOUNDARY_DISPLAY;
+        if (hasBoundary(player)) {
+            double playerBoundaryExp = playerBoundary.get(player.getUniqueId());
+            // 查找玩家对应的境界
+            for (Map.Entry<String, Double> entry : defaultBoundary.entrySet()) {
+                if (entry.getValue() <= playerBoundaryExp) {
+                    boundary = entry.getKey();
+                }
+            }
+        }
+        return boundary;
+    }
+
+    /**
+     * 获取玩家的灵力值, 即修炼得到的经验值
+     *
+     * @param player 指定的玩家
+     * @return 玩家灵力值
+     */
+    public double getPlayerBoundaryExp(OfflinePlayer player) {
+        if (hasBoundary(player)) {
+            return playerBoundary.get(player.getUniqueId());
+        }
+        return 0;
+    }
+
+    public void addBoundaryExp(OfflinePlayer player, double exp) {
+        if (hasBoundary(player)) {
+            double result = playerBoundary.get(player.getUniqueId()) + exp;
+            if (result < 0) {
+                result = 0;
+            }
+            playerBoundary.put(player.getUniqueId(), result);
+        } else {
+            playerBoundary.put(player.getUniqueId(), exp);
+        }
+    }
+
+    public void removeBoundaryExp(OfflinePlayer player, double exp) {
+        if (hasBoundary(player)) {
+            double result = playerBoundary.get(player.getUniqueId()) - exp;
+            if (result < 0) {
+                result = 0;
+            }
+            playerBoundary.put(player.getUniqueId(), result);
+        }
+    }
+
+    public boolean hasBoundary(OfflinePlayer player) {
+        return playerBoundary.containsKey(player.getUniqueId());
+    }
+
 
 }

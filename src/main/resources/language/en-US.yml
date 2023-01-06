@@ -16,6 +16,8 @@ me:
   - "&6Your current Lingem attribute: &e%grus_lingem%"
   - "&6Your current boundary level: &e%grus_boundary_level%"
   - "&6Your current boundary experience: &e%grus_boundary_exp%"
+
 console-set-language: "Set language: "
-console-load-lingem: "Load lingem: %num%"
+console-load-lingem: "Load lingem(of %num%): %content%"
+console-load-boundary: "Load boundary(of %num%): %content%"
 console-must-be-player: "&cYou must be a player!"
