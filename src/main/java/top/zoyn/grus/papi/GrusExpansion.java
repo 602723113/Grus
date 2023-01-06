@@ -19,26 +19,23 @@ public class GrusExpansion extends PlaceholderExpansion {
 
     @Override
     public String getVersion() {
-        return "1.0.0";
+        return "1.0";
     }
 
     @Override
     public String onRequest(OfflinePlayer player, String params) {
         if (params.equalsIgnoreCase("boundary_level")) {
-            return "练气";
+            return GrusAPI.getBoundaryManager().getPlayerBoundary(player);
         }
-
         if (params.equalsIgnoreCase("boundary_exp")) {
-            return "1";
+            return "" + GrusAPI.getBoundaryManager().getPlayerBoundaryExp(player);
         }
-
         if (params.equalsIgnoreCase("lingem")) {
             if (GrusAPI.getLingemManager().hasLingem(player)) {
                 return GrusAPI.getLingemManager().getPlayerLingem(player).toString();
             }
             return I18N.NO_LINGEM.getMessage();
         }
-
         return null;
     }
 }
