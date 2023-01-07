@@ -27,7 +27,6 @@ public class LanguageManager {
     public LanguageManager reload() {
         // 默认语言为 zh-CN
         language = Grus.getInstance().getConfig().getString("language", "zh-CN");
-        Logger.info(I18N.CONSOLE_SET_LANGUAGE.getMessage() + language);
         languageFolder = new File(Grus.getInstance().getDataFolder(), "language");
         languageFile = new File(languageFolder, language + ".yml");
         languageConfig = ConfigurationUtils.loadYML(languageFile);
