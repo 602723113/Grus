@@ -34,7 +34,7 @@ public class BoundaryManager {
     /**
      * 预设境界的显示设定
      */
-    private Map<String, String> boundaryColor = Maps.newHashMap();
+    private Map<String, String> boundaryDisplay = Maps.newHashMap();
 
     /**
      * 无境界时的显示名
@@ -69,9 +69,9 @@ public class BoundaryManager {
         boundaryConfig.getConfigurationSection("level")
                 .getKeys(false)
                 .forEach(section -> defaultBoundary.put(section, boundaryConfig.getDouble("level." + section)));
-        boundaryConfig.getConfigurationSection("color-code")
+        boundaryConfig.getConfigurationSection("display")
                 .getKeys(false)
-                .forEach(section -> boundaryColor.put(section, ChatColor.translateAlternateColorCodes('&', boundaryConfig.getString("color-code." + section))));
+                .forEach(section -> boundaryDisplay.put(section, ChatColor.translateAlternateColorCodes('&', boundaryConfig.getString("color-code." + section))));
 
         // 无境界时的显示名
         NO_BOUNDARY_DISPLAY = ChatColor.translateAlternateColorCodes('&', boundaryConfig.getString("no-boundary-display"));
@@ -107,9 +107,9 @@ public class BoundaryManager {
         lingemConfig.getConfigurationSection("level")
                 .getKeys(false)
                 .forEach(section -> defaultBoundary.put(section, lingemConfig.getDouble("level." + section)));
-        lingemConfig.getConfigurationSection("color-code")
+        lingemConfig.getConfigurationSection("display")
                 .getKeys(false)
-                .forEach(section -> boundaryColor.put(section, ChatColor.translateAlternateColorCodes('&', lingemConfig.getString("color-code." + section))));
+                .forEach(section -> boundaryDisplay.put(section, ChatColor.translateAlternateColorCodes('&', lingemConfig.getString("color-code." + section))));
 
         // 无境界时的显示名
         NO_BOUNDARY_DISPLAY = ChatColor.translateAlternateColorCodes('&', lingemConfig.getString("no-boundary-display"));
@@ -126,10 +126,7 @@ public class BoundaryManager {
      * @return 如果无法找到对应的境界展示名则会返回 无境界时的展示名
      */
     public String getDisplayBoundary(String boundary) {
-        if (boundaryColor.containsKey(boundary)) {
-            return boundary;
-        }
-        return NO_BOUNDARY_DISPLAY;
+        return boundaryDisplay.getOrDefault(boundary, NO_BOUNDARY_DISPLAY);
     }
 
     /**
