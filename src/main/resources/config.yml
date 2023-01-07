@@ -23,8 +23,8 @@ boundary-settings:
     炼虚: 50000000
     合体: 500000000
     大乘: 5000000000
-  # 设置每个等级的显示颜色
-  color-code:
+  # 设置每个等级的显示名
+  display:
     炼气: "&f炼气"
     筑基初阶: "&2筑基初阶"
     筑基中阶: "&3筑基中阶"
@@ -50,6 +50,12 @@ lingem-settings:
     水: 0.2
     火: 0.2
     土: 0.2
+  display:
+    金: "&6金灵根"
+    木: "&2木灵根"
+    水: "&9水灵根"
+    火: "&c火灵根"
+    土: "&e土灵根"
 
 # 境界经验值掉落设定
 boundary-exp-drop-settings:
@@ -84,3 +90,10 @@ boundary-exp-drop-settings:
     wither-skeleton: 10
     zombie: 10
     zombie-villager: 10
+
+attribute-settings:
+  attributes:
+    气血: 20
+    灵气: 20
+    物理攻击: 1
+    物理防御: 0

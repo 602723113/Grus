@@ -9,12 +9,26 @@ import java.util.stream.Collectors;
 public enum I18N {
 
     HELP("help"),
-    ME("me"),
+    HELP_OP("help-op"),
+    HELP_BOUNDARY("help-boundary"),
+    HELP_LINGEM("help-lingem"),
+    WRONG_COMMAND_USAGE("wrong-command-usage"),
+
     MESSAGE_PREFIX("message-prefix"),
     UNKNOWN_COMMAND("unknown-command"),
     NO_PERMISSION("no-permission"),
     NO_LINGEM("no-lingem"),
+
+    ME("me"),
     YOU_HAVE_GAINED_EXP("you-have-gained-exp"),
+    PLAYER_DO_NOT_EXIST("player-do-not-exist"),
+    BOUNDARY_LOOK("boundary-look"),
+    BOUNDARY_ADD("boundary-add"),
+    BOUNDARY_REMOVE("boundary-remove"),
+    LINGEM_LOOK("lingem-look"),
+    LINGEM_ADD("lingem-add"),
+    LINGEM_REMOVE("lingem-remove"),
+
     CONSOLE_SET_LANGUAGE("console-set-language"),
     CONSOLE_LOAD_LINGEM("console-load-lingem"),
     CONSOLE_LOAD_BOUNDARY("console-load-boundary"),

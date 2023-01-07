@@ -10,6 +10,9 @@ public class HelpCommand implements SubCommand {
     public void execute(CommandSender sender, String[] args) {
         if (sender.hasPermission("grus.help")) {
             I18N.HELP.getAsStringList().forEach(sender::sendMessage);
+            if (sender.isOp()) {
+                I18N.HELP_OP.getAsStringList().forEach(sender::sendMessage);
+            }
         } else {
             sender.sendMessage(I18N.NO_PERMISSION.getMessage());
         }

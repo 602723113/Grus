@@ -26,7 +26,7 @@ public class EntityDeathListener implements Listener {
                 double exp = GrusAPI.getBoundaryExpDropManager().getExpDropByEntityType(entity.getType());
                 Player player = entity.getKiller();
                 GrusAPI.getBoundaryManager().addBoundaryExp(player, exp);
-                player.sendMessage(I18N.YOU_HAVE_GAINED_EXP.getMessage());
+                player.sendMessage(I18N.YOU_HAVE_GAINED_EXP.getMessage().replace("%exp%", "" + exp));
             }
         }
     }

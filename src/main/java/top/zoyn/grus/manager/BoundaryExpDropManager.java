@@ -16,15 +16,7 @@ public class BoundaryExpDropManager {
     private ExpDropMode MODE;
 
     public BoundaryExpDropManager() {
-        ConfigurationSection config = Grus.getInstance().getConfig().getConfigurationSection("boundary-exp-drop-settings");
-
-        MODE = ExpDropMode.valueOf(config.getString("mode").toUpperCase());
-        // config 预设数据
-        config.getConfigurationSection("monster")
-                .getKeys(false)
-                .forEach(section -> defaultExpDrop.put(section.toUpperCase().replace("-", "_"), config.getDouble("monster." + section)));
-
-        Logger.info(I18N.CONSOLE_LOAD_BOUNDARY_EXP_DROP.getMessage());
+        reload();
     }
 
     public void reload() {

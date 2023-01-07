@@ -21,24 +21,12 @@ public class LanguageManager {
     private FileConfiguration languageConfig;
 
     public LanguageManager() {
-        // 默认语言为 zh-CN
-        language = Grus.getInstance().getConfig().getString("language", "zh-CN");
-        languageFolder = new File(Grus.getInstance().getDataFolder(), "language");
-        languageFile = new File(languageFolder, language + ".yml");
-        languageConfig = ConfigurationUtils.loadYML(languageFile);
-
-        // 重新加载多语言系统
-        for (I18N value : I18N.values()) {
-            value.init(languageConfig);
-        }
-
-        Logger.info(I18N.CONSOLE_SET_LANGUAGE.getMessage() + language);
+        reload();
     }
 
     public LanguageManager reload() {
         // 默认语言为 zh-CN
         language = Grus.getInstance().getConfig().getString("language", "zh-CN");
-        Logger.info(I18N.CONSOLE_SET_LANGUAGE.getMessage() + language);
         languageFolder = new File(Grus.getInstance().getDataFolder(), "language");
         languageFile = new File(languageFolder, language + ".yml");
         languageConfig = ConfigurationUtils.loadYML(languageFile);

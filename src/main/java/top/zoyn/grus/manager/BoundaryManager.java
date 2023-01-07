@@ -34,7 +34,7 @@ public class BoundaryManager {
     /**
      * 预设境界的显示设定
      */
-    private Map<String, String> boundaryColor = Maps.newHashMap();
+    private Map<String, String> boundaryDisplay = Maps.newHashMap();
 
     /**
      * 无境界时的显示名
@@ -46,38 +46,7 @@ public class BoundaryManager {
     private FileConfiguration boundaryDataConfig;
 
     public BoundaryManager() {
-        boundaryFolder = new File(Grus.getInstance().getDataFolder(), "data");
-        boundaryFile = new File(boundaryFolder, "boundary-data.yml");
-        // 玩家境界灵气数据文件创建
-        if (!boundaryFile.exists()) {
-            boundaryFolder.mkdirs();
-            try {
-                boundaryFile.createNewFile();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        }
-        boundaryDataConfig = ConfigurationUtils.loadYML(boundaryFile);
-        // 玩家数据
-        ConfigurationSection data = boundaryDataConfig.getConfigurationSection("data");
-        if (data != null) {
-            data.getKeys(false).forEach(uid -> playerBoundary.put(UUID.fromString(uid), boundaryDataConfig.getDouble("data." + uid)));
-        }
-
-        ConfigurationSection boundaryConfig = Grus.getInstance().getConfig().getConfigurationSection("boundary-settings");
-        // config 预设数据
-        boundaryConfig.getConfigurationSection("level")
-                .getKeys(false)
-                .forEach(section -> defaultBoundary.put(section, boundaryConfig.getDouble("level." + section)));
-        boundaryConfig.getConfigurationSection("color-code")
-                .getKeys(false)
-                .forEach(section -> boundaryColor.put(section, ChatColor.translateAlternateColorCodes('&', boundaryConfig.getString("color-code." + section))));
-
-        // 无境界时的显示名
-        NO_BOUNDARY_DISPLAY = ChatColor.translateAlternateColorCodes('&', boundaryConfig.getString("no-boundary-display"));
-        Logger.info(I18N.CONSOLE_LOAD_BOUNDARY.getMessage()
-                .replace("%num%", "" + defaultBoundary.keySet().size())
-                .replace("%content%", defaultBoundary.keySet().toString()));
+        reload();
     }
 
     public void reload() {
@@ -107,9 +76,9 @@ public class BoundaryManager {
         lingemConfig.getConfigurationSection("level")
                 .getKeys(false)
                 .forEach(section -> defaultBoundary.put(section, lingemConfig.getDouble("level." + section)));
-        lingemConfig.getConfigurationSection("color-code")
+        lingemConfig.getConfigurationSection("display")
                 .getKeys(false)
-                .forEach(section -> boundaryColor.put(section, ChatColor.translateAlternateColorCodes('&', lingemConfig.getString("color-code." + section))));
+                .forEach(section -> boundaryDisplay.put(section, ChatColor.translateAlternateColorCodes('&', lingemConfig.getString("display." + section))));
 
         // 无境界时的显示名
         NO_BOUNDARY_DISPLAY = ChatColor.translateAlternateColorCodes('&', lingemConfig.getString("no-boundary-display"));
@@ -126,10 +95,7 @@ public class BoundaryManager {
      * @return 如果无法找到对应的境界展示名则会返回 无境界时的展示名
      */
     public String getDisplayBoundary(String boundary) {
-        if (boundaryColor.containsKey(boundary)) {
-            return boundary;
-        }
-        return NO_BOUNDARY_DISPLAY;
+        return boundaryDisplay.getOrDefault(boundary, NO_BOUNDARY_DISPLAY);
     }
 
     /**
