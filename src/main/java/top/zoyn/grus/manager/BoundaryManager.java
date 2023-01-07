@@ -46,38 +46,7 @@ public class BoundaryManager {
     private FileConfiguration boundaryDataConfig;
 
     public BoundaryManager() {
-        boundaryFolder = new File(Grus.getInstance().getDataFolder(), "data");
-        boundaryFile = new File(boundaryFolder, "boundary-data.yml");
-        // 玩家境界灵气数据文件创建
-        if (!boundaryFile.exists()) {
-            boundaryFolder.mkdirs();
-            try {
-                boundaryFile.createNewFile();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        }
-        boundaryDataConfig = ConfigurationUtils.loadYML(boundaryFile);
-        // 玩家数据
-        ConfigurationSection data = boundaryDataConfig.getConfigurationSection("data");
-        if (data != null) {
-            data.getKeys(false).forEach(uid -> playerBoundary.put(UUID.fromString(uid), boundaryDataConfig.getDouble("data." + uid)));
-        }
-
-        ConfigurationSection boundaryConfig = Grus.getInstance().getConfig().getConfigurationSection("boundary-settings");
-        // config 预设数据
-        boundaryConfig.getConfigurationSection("level")
-                .getKeys(false)
-                .forEach(section -> defaultBoundary.put(section, boundaryConfig.getDouble("level." + section)));
-        boundaryConfig.getConfigurationSection("display")
-                .getKeys(false)
-                .forEach(section -> boundaryDisplay.put(section, ChatColor.translateAlternateColorCodes('&', boundaryConfig.getString("color-code." + section))));
-
-        // 无境界时的显示名
-        NO_BOUNDARY_DISPLAY = ChatColor.translateAlternateColorCodes('&', boundaryConfig.getString("no-boundary-display"));
-        Logger.info(I18N.CONSOLE_LOAD_BOUNDARY.getMessage()
-                .replace("%num%", "" + defaultBoundary.keySet().size())
-                .replace("%content%", defaultBoundary.keySet().toString()));
+        reload();
     }
 
     public void reload() {

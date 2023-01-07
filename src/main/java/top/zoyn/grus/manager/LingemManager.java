@@ -35,31 +35,7 @@ public class LingemManager {
     private FileConfiguration lingemDataConfig;
 
     public LingemManager() {
-        lingemFolder = new File(Grus.getInstance().getDataFolder(), "data");
-        lingemFile = new File(lingemFolder, "lingem-data.yml");
-        // 灵根数据文件创建
-        if (!lingemFile.exists()) {
-            lingemFolder.mkdirs();
-            try {
-                lingemFile.createNewFile();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        }
-        lingemDataConfig = ConfigurationUtils.loadYML(lingemFile);
-        // 玩家数据
-        ConfigurationSection data = lingemDataConfig.getConfigurationSection("data");
-        if (data != null) {
-            data.getKeys(false).forEach(uid -> playerLingem.put(UUID.fromString(uid), lingemDataConfig.getStringList("data." + uid)));
-        }
-
-        ConfigurationSection lingemConfig = Grus.getInstance().getConfig().getConfigurationSection("lingem-settings");
-        // config 预设数据
-        lingemConfig.getConfigurationSection("chances").getKeys(false).forEach(section -> lingemChances.put(section, lingemConfig.getDouble("chances." + section)));
-
-        Logger.info(I18N.CONSOLE_LOAD_LINGEM.getMessage()
-                .replace("%num%", "" + lingemChances.keySet().size())
-                .replace("%content%", lingemChances.keySet().toString()));
+        reload();
     }
 
     public void reload() {
