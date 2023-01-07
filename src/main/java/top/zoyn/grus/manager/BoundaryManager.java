@@ -78,7 +78,7 @@ public class BoundaryManager {
                 .forEach(section -> defaultBoundary.put(section, lingemConfig.getDouble("level." + section)));
         lingemConfig.getConfigurationSection("display")
                 .getKeys(false)
-                .forEach(section -> boundaryDisplay.put(section, ChatColor.translateAlternateColorCodes('&', lingemConfig.getString("color-code." + section))));
+                .forEach(section -> boundaryDisplay.put(section, ChatColor.translateAlternateColorCodes('&', lingemConfig.getString("display." + section))));
 
         // 无境界时的显示名
         NO_BOUNDARY_DISPLAY = ChatColor.translateAlternateColorCodes('&', lingemConfig.getString("no-boundary-display"));
