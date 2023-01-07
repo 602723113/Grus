@@ -90,3 +90,10 @@ boundary-exp-drop-settings:
     wither-skeleton: 10
     zombie: 10
     zombie-villager: 10
+
+attribute-settings:
+  attributes:
+    气血: 20
+    灵气: 20
+    物理攻击: 1
+    物理防御: 0
