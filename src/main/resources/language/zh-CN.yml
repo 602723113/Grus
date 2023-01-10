@@ -6,7 +6,8 @@
 message-prefix: "&e[&6Grus&e] "
 unknown-command: "&c未知命令!"
 no-permission: "&c权限不足!"
-no-lingem: "&f无灵根"
+# 原本这里是 无灵根 但是根据实际情况, 还是改成未知尚好
+no-lingem: "&f未知"
 reload-done: "&a重载成功"
 
 help:
