@@ -12,6 +12,7 @@ public enum I18N {
     HELP_OP("help-op"),
     HELP_BOUNDARY("help-boundary"),
     HELP_LINGEM("help-lingem"),
+    RELOAD_DONE("reload-done"),
     WRONG_COMMAND_USAGE("wrong-command-usage"),
 
     MESSAGE_PREFIX("message-prefix"),
@@ -28,6 +29,8 @@ public enum I18N {
     LINGEM_LOOK("lingem-look"),
     LINGEM_ADD("lingem-add"),
     LINGEM_REMOVE("lingem-remove"),
+    LINGEM_RESET("lingem-reset"),
+    LINGEM_IS_NOT_EXIST("lingem-is-not-exist"),
 
     CONSOLE_SET_LANGUAGE("console-set-language"),
     CONSOLE_LOAD_LINGEM("console-load-lingem"),

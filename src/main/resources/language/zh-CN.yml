@@ -7,6 +7,7 @@ message-prefix: "&e[&6Grus&e] "
 unknown-command: "&c未知命令!"
 no-permission: "&c权限不足!"
 no-lingem: "&f无灵根"
+reload-done: "&a重载成功"
 
 help:
   - "&7===== &e[&6Grus &f&l| &6修仙&e] &7====="
@@ -16,6 +17,7 @@ help:
 help-op:
   - " &e/grus boundary &6查阅境界修为管理帮助 "
   - " &e/grus lingem &6查阅灵根管理帮助 "
+  - " &e/grus reload &6重新加载插件数据 "
 help-boundary:
   - "&e[&6修为更改&e] &f>> (该内容只有OP方可查询)"
   - " &e/grus boundary look <玩家名/UUID> &6查看该玩家的境界与修为 "
@@ -26,7 +28,7 @@ help-lingem:
   - " &e/grus lingem look <玩家名/UUID> &6查看该玩家的灵根 "
   - " &e/grus lingem add <玩家名/UUID> <灵根名> &6增加该玩家一指定的灵根 "
   - " &e/grus lingem remove <玩家名/UUID> <灵根名> &6移除该玩家的某一灵根 "
-  - " &e/grus lingem reset <玩家名/UUID> &6重置该玩家的灵根(常用于玩家陨落后的重生后重置灵根)"
+  - " &e/grus lingem reset <玩家名/UUID> &6重置该玩家的灵根(常用于玩家陨落后重置灵根)"
 
 me:
   - " "
@@ -53,7 +55,9 @@ lingem-look:
   - "该道友当前的境界为: %grus_boundary_level%"
   - "该道友当前的修为共: %grus_boundary_exp%"
 lingem-add: "&e成功向 %player_name% 增补了 %lingem%"
+lingem-is-not-exist: "&c灵根 %lingem% 不存在!"
 lingem-remove: "&e成功将 %player_name% 的 %lingem% 逐出体外"
+lingem-reset: "&e已将 %player_name% 的灵根进行重置"
 
 console-set-language: "已设置语言: "
 console-load-lingem: "已读取灵根(共 %num% 个): %content%"
