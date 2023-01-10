@@ -43,7 +43,7 @@ public class LingemManager {
         playerLingem.clear();
 
         lingemFolder = new File(Grus.getInstance().getDataFolder(), "data");
-        lingemFile = new File(lingemFolder, "Lingem-data.yml");
+        lingemFile = new File(lingemFolder, "lingem-data.yml");
         // 灵根数据文件创建
         if (!lingemFile.exists()) {
             lingemFolder.mkdirs();
