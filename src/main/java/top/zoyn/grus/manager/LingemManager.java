@@ -137,6 +137,7 @@ public class LingemManager {
                     .get()
             );
         }
+        playerLingem.put(player.getUniqueId(), lingems);
     }
 
     /**
@@ -151,5 +152,15 @@ public class LingemManager {
         } else {
             playerLingem.put(player.getUniqueId(), Lists.newArrayList(lingem));
         }
+    }
+
+    /**
+     * 查询给定的灵根是否属于 config 中的灵根
+     *
+     * @param lingem 给定的灵根
+     * @return 如果存在于 config 中则返回 true
+     */
+    public boolean hasLingemInDefault(String lingem) {
+        return lingemChances.containsKey(lingem);
     }
 }
