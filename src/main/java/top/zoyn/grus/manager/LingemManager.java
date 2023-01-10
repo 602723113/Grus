@@ -69,6 +69,14 @@ public class LingemManager {
                 .replace("%content%", lingemChances.keySet().toString()));
     }
 
+    public void save() {
+        for (Map.Entry<UUID, List<String>> entry : playerLingem.entrySet()) {
+            lingemDataConfig.set("data." + entry.getKey(), entry.getValue());
+        }
+        // 保存数据
+        ConfigurationUtils.saveYML(lingemDataConfig, lingemFile);
+    }
+
     public Map<UUID, List<String>> getPlayerLingem() {
         return playerLingem;
     }

@@ -88,6 +88,14 @@ public class BoundaryManager {
                 .replace("%content%", defaultBoundary.keySet().toString()));
     }
 
+    public void save() {
+        for (Map.Entry<UUID, Double> entry : playerBoundary.entrySet()) {
+            boundaryDataConfig.set("data." + entry.getKey(), entry.getValue());
+        }
+        // 保存数据
+        ConfigurationUtils.saveYML(boundaryDataConfig, boundaryFile);
+    }
+
     /**
      * 取得境界的展示名
      *
