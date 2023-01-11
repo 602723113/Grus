@@ -48,6 +48,12 @@ public final class Grus extends JavaPlugin {
         }
     }
 
+    @Override
+    public void onDisable() {
+        boundaryManager.save();
+        lingemManager.save();
+    }
+
     public static Grus getInstance() {
         return instance;
     }

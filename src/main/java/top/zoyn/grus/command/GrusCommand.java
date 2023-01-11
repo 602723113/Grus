@@ -7,10 +7,7 @@ import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.command.TabExecutor;
 import top.zoyn.grus.I18N;
-import top.zoyn.grus.command.subcommand.BoundaryCommand;
-import top.zoyn.grus.command.subcommand.HelpCommand;
-import top.zoyn.grus.command.subcommand.LingemCommand;
-import top.zoyn.grus.command.subcommand.MeCommand;
+import top.zoyn.grus.command.subcommand.*;
 
 import java.util.List;
 import java.util.Map;
@@ -27,6 +24,7 @@ public class GrusCommand implements TabExecutor {
         registerCommand("me", new MeCommand());
         registerCommand("lingem", new LingemCommand());
         registerCommand("boundary", new BoundaryCommand());
+        registerCommand("reload", new ReloadCommand());
     }
 
     private void registerCommand(String commandName, SubCommand subCommand) {

@@ -43,7 +43,7 @@ public class LingemManager {
         playerLingem.clear();
 
         lingemFolder = new File(Grus.getInstance().getDataFolder(), "data");
-        lingemFile = new File(lingemFolder, "Lingem-data.yml");
+        lingemFile = new File(lingemFolder, "lingem-data.yml");
         // 灵根数据文件创建
         if (!lingemFile.exists()) {
             lingemFolder.mkdirs();
@@ -67,6 +67,14 @@ public class LingemManager {
         Logger.info(I18N.CONSOLE_LOAD_LINGEM.getMessage()
                 .replace("%num%", "" + lingemChances.keySet().size())
                 .replace("%content%", lingemChances.keySet().toString()));
+    }
+
+    public void save() {
+        for (Map.Entry<UUID, List<String>> entry : playerLingem.entrySet()) {
+            lingemDataConfig.set("data." + entry.getKey(), entry.getValue());
+        }
+        // 保存数据
+        ConfigurationUtils.saveYML(lingemDataConfig, lingemFile);
     }
 
     public Map<UUID, List<String>> getPlayerLingem() {
@@ -137,6 +145,7 @@ public class LingemManager {
                     .get()
             );
         }
+        playerLingem.put(player.getUniqueId(), lingems);
     }
 
     /**
@@ -151,5 +160,15 @@ public class LingemManager {
         } else {
             playerLingem.put(player.getUniqueId(), Lists.newArrayList(lingem));
         }
+    }
+
+    /**
+     * 查询给定的灵根是否属于 config 中的灵根
+     *
+     * @param lingem 给定的灵根
+     * @return 如果存在于 config 中则返回 true
+     */
+    public boolean hasLingemInDefault(String lingem) {
+        return lingemChances.containsKey(lingem);
     }
 }
