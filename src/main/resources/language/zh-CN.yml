@@ -40,7 +40,7 @@ me:
   - "  &6道友, 您当前的修为共: &e%grus_boundary_exp%"
   - " "
   - " "
-you-have-gained-exp: "&e你得到了 &6%exp% 点灵气值"
+you-have-gained-exp: "&e你得到了 &6%exp% &e点修为"
 player-do-not-exist: "&c玩家 %player_name% 不存在!"
 wrong-command-usage: "&c指令用法错误!"
 boundary-look:
