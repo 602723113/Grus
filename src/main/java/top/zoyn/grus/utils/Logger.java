@@ -23,7 +23,7 @@ public final class Logger {
     }
 
     public static void warn(String msg) {
-        logger.sendMessage(I18N.MESSAGE_PREFIX.getMessage() + " §f| §c§lWARN§7] §r" + msg);
+        logger.sendMessage(I18N.MESSAGE_PREFIX.getMessage() + "§f| §c§lWARN§7] §r" + msg);
     }
 
     public static void warn(String... msg) {
@@ -31,7 +31,7 @@ public final class Logger {
     }
 
     public static void error(String msg) {
-        logger.sendMessage(I18N.MESSAGE_PREFIX.getMessage() + " §f| §4§lERROR§7] §r" + msg);
+        logger.sendMessage(I18N.MESSAGE_PREFIX.getMessage() + "§f| §4§lERROR§7] §r" + msg);
     }
 
     public static void error(String... msg) {
