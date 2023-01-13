@@ -62,27 +62,6 @@ public final class Grus extends JavaPlugin {
         if (Bukkit.getPluginManager().getPlugin("PlaceholderAPI") != null) {
             new GrusExpansion().register();
         }
-
-
-//        System.out.println(getServer().spigot().getConfig().get("world-settings.default.merge-radius.exp"));
-
-        protocolManager.addPacketListener(new PacketAdapter(this, PacketType.Play.Server.COLLECT) {
-            @Override
-            public void onPacketSending(PacketEvent event) {
-                PacketContainer packet = event.getPacket();
-                Player player = event.getPlayer();
-                int collectedEntity = packet.getIntegers().read(0);
-
-                Entity entity = protocolManager.getEntityFromID(event.getPlayer().getWorld(), collectedEntity);
-                if (entity instanceof ExperienceOrb) {
-                    ExperienceOrb expOrb = (ExperienceOrb) entity;
-                    if (ChiOrb.getChiOrbName().equalsIgnoreCase(expOrb.getCustomName())) {
-                        GrusAPI.getBoundaryManager().addBoundaryExp(player, expOrb.getExperience());
-                        player.sendMessage(I18N.YOU_HAVE_GAINED_EXP.getMessage().replace("%exp%", "" + expOrb.getExperience()));
-                    }
-                }
-            }
-        });
     }
 
     @Override
@@ -109,5 +88,9 @@ public final class Grus extends JavaPlugin {
 
     public BoundaryExpDropManager getBoundaryExpDropManager() {
         return boundaryExpDropManager;
+    }
+
+    public ProtocolManager getProtocolManager() {
+        return protocolManager;
     }
 }

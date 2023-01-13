@@ -17,7 +17,7 @@ public class ChiOrb {
 
     public ChiOrb(Location spawnLocation, int exp) {
         expOrb = (ExperienceOrb) spawnLocation.getWorld().spawnEntity(spawnLocation, EntityType.EXPERIENCE_ORB);
-        expOrb.setCustomName(ChatColor.translateAlternateColorCodes('&', Grus.getInstance().getConfig().getString("chi-orb-name")));
+        expOrb.setCustomName(ChatColor.translateAlternateColorCodes('&', Grus.getInstance().getConfig().getString("boundary-exp-drop-settings.chi-orb-name")));
         expOrb.setCustomNameVisible(true);
         expOrb.setExperience(exp);
     }
