@@ -5,7 +5,6 @@ import com.google.common.collect.Maps;
 import org.bukkit.OfflinePlayer;
 import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.configuration.file.FileConfiguration;
-import org.bukkit.entity.Player;
 import top.zoyn.grus.Grus;
 import top.zoyn.grus.I18N;
 import top.zoyn.grus.utils.ConfigurationUtils;

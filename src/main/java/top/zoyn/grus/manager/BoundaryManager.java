@@ -1,12 +1,14 @@
 package top.zoyn.grus.manager;
 
 import com.google.common.collect.Maps;
+import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.OfflinePlayer;
 import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.configuration.file.FileConfiguration;
 import top.zoyn.grus.Grus;
 import top.zoyn.grus.I18N;
+import top.zoyn.grus.api.event.PlayerBoundaryExpChangeEvent;
 import top.zoyn.grus.utils.ConfigurationUtils;
 import top.zoyn.grus.utils.Logger;
 
@@ -127,7 +129,7 @@ public class BoundaryManager {
     }
 
     /**
-     * 获取玩家的灵力值, 即修炼得到的经验值
+     * 获取玩家的修为值, 即修炼得到的经验值
      *
      * @param player 指定的玩家
      * @return 玩家灵力值
@@ -139,28 +141,61 @@ public class BoundaryManager {
         return 0;
     }
 
+    /**
+     * 给指定的玩家增加指定的修为
+     *
+     * @param player 指定的玩家
+     * @param exp    指定的修为
+     */
     public void addBoundaryExp(OfflinePlayer player, double exp) {
         if (hasBoundary(player)) {
             double result = playerBoundary.get(player.getUniqueId()) + exp;
             if (result < 0) {
                 result = 0;
             }
+            PlayerBoundaryExpChangeEvent event = new PlayerBoundaryExpChangeEvent(playerBoundary.get(player.getUniqueId()), result, player.getPlayer());
+            Bukkit.getPluginManager().callEvent(event);
+            if (event.isCancelled()) {
+                return;
+            }
             playerBoundary.put(player.getUniqueId(), result);
         } else {
+            PlayerBoundaryExpChangeEvent event = new PlayerBoundaryExpChangeEvent(0, exp, player.getPlayer());
+            Bukkit.getPluginManager().callEvent(event);
+            if (event.isCancelled()) {
+                return;
+            }
             playerBoundary.put(player.getUniqueId(), exp);
         }
     }
 
+    /**
+     * 移除指定的玩家指定的修为值
+     *
+     * @param player 指定的玩家
+     * @param exp    指定的修为
+     */
     public void removeBoundaryExp(OfflinePlayer player, double exp) {
         if (hasBoundary(player)) {
             double result = playerBoundary.get(player.getUniqueId()) - exp;
             if (result < 0) {
                 result = 0;
             }
+            PlayerBoundaryExpChangeEvent event = new PlayerBoundaryExpChangeEvent(playerBoundary.get(player.getUniqueId()), result, player.getPlayer());
+            Bukkit.getPluginManager().callEvent(event);
+            if (event.isCancelled()) {
+                return;
+            }
             playerBoundary.put(player.getUniqueId(), result);
         }
     }
 
+    /**
+     * 判断一名玩家是否有修为值
+     *
+     * @param player 指定的玩家
+     * @return 若玩家已有修为则会返回 true
+     */
     public boolean hasBoundary(OfflinePlayer player) {
         return playerBoundary.containsKey(player.getUniqueId());
     }
