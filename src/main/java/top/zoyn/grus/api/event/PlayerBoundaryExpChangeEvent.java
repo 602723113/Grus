@@ -13,17 +13,17 @@ public class PlayerBoundaryExpChangeEvent extends Event implements Cancellable {
     private Player player;
     private boolean cancel = false;
 
+    private static final HandlerList handlers = new HandlerList();
+
     public PlayerBoundaryExpChangeEvent(double from, double to, Player player) {
         this.from = from;
         this.to = to;
         this.player = player;
     }
 
-    private static final HandlerList handlers = new HandlerList();
-
     @Override
     public @NotNull HandlerList getHandlers() {
-        return null;
+        return handlers;
     }
 
     public static HandlerList getHandlerList() {
