@@ -37,7 +37,7 @@ public class GrusExpansion extends PlaceholderExpansion {
         }
         if (params.equalsIgnoreCase("lingem")) {
             if (lingemManager.hasLingem(player)) {
-                return lingemManager.getPlayerLingem(player).toString();
+                return lingemManager.getPlayerDisplayLingem(player).toString();
             }
             return I18N.NO_LINGEM.getMessage();
         }

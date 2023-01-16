@@ -59,6 +59,7 @@ lingem-add: "&e成功向 %player_name% 增补了 %lingem%"
 lingem-is-not-exist: "&c灵根 %lingem% 不存在!"
 lingem-remove: "&e成功将 %player_name% 的 %lingem% 逐出体外"
 lingem-reset: "&e已将 %player_name% 的灵根进行重置"
+lingem-have-not-display: "&c该灵根未设置显示名!"
 
 console-wrong-chi-orb-setting: "&c你必须将服务端下 spigot.yml 下的 world-settings.default.merge-radius.exp 设置为 -1 才可以使用真气实体掉落方式, 已自动设置为 vanilla 掉落方式"
 console-set-language: "已设置语言: "
