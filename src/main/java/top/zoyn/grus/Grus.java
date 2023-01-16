@@ -1,27 +1,18 @@
 package top.zoyn.grus;
 
-import com.comphenix.protocol.PacketType;
 import com.comphenix.protocol.ProtocolLibrary;
 import com.comphenix.protocol.ProtocolManager;
-import com.comphenix.protocol.events.*;
 import org.bukkit.Bukkit;
-import org.bukkit.entity.Entity;
-import org.bukkit.entity.ExperienceOrb;
-import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
-import top.zoyn.grus.api.GrusAPI;
 import top.zoyn.grus.command.GrusCommand;
 import top.zoyn.grus.listener.EntityDeathListener;
 import top.zoyn.grus.manager.BoundaryExpDropManager;
 import top.zoyn.grus.manager.BoundaryManager;
 import top.zoyn.grus.manager.LanguageManager;
 import top.zoyn.grus.manager.LingemManager;
-import top.zoyn.grus.model.ChiOrb;
 import top.zoyn.grus.papi.GrusExpansion;
 
 import java.io.File;
-import java.util.ArrayList;
-import java.util.List;
 
 public final class Grus extends JavaPlugin {
 
@@ -32,6 +23,10 @@ public final class Grus extends JavaPlugin {
     private BoundaryExpDropManager boundaryExpDropManager;
     private LingemManager lingemManager;
     private ProtocolManager protocolManager;
+
+    public static Grus getInstance() {
+        return instance;
+    }
 
     public void onLoad() {
         protocolManager = ProtocolLibrary.getProtocolManager();
@@ -68,10 +63,6 @@ public final class Grus extends JavaPlugin {
     public void onDisable() {
         boundaryManager.save();
         lingemManager.save();
-    }
-
-    public static Grus getInstance() {
-        return instance;
     }
 
     public LanguageManager getLanguageManager() {
