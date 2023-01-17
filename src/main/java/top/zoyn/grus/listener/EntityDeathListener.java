@@ -20,14 +20,24 @@ public class EntityDeathListener implements Listener {
     @EventHandler
     public void onDeath(EntityDeathEvent event) {
         LivingEntity entity = event.getEntity();
-        if (entity.getKiller() != null && entity.getKiller() instanceof Player) {
-            // 原版掉落处理
-            if (GrusAPI.getBoundaryExpDropManager().getExpDropMode().equals(BoundaryExpDropManager.ExpDropMode.VANILLA)) {
+        // 原版掉落处理
+        if (GrusAPI.getBoundaryExpDropManager().getExpDropMode().equals(BoundaryExpDropManager.ExpDropMode.VANILLA)) {
+            if (entity.getKiller() != null && entity.getKiller() instanceof Player) {
                 double exp = GrusAPI.getBoundaryExpDropManager().getExpDropByEntityType(entity.getType());
+                // 说明不属于可获得修为的怪物
+                if (exp <= 0) {
+                    return;
+                }
                 Player player = entity.getKiller();
                 GrusAPI.getBoundaryManager().addBoundaryExp(player, exp);
                 player.sendMessage(I18N.YOU_HAVE_GAINED_EXP.getMessage().replace("%exp%", "" + exp));
             }
+            return;
+        }
+        // 真气掉落处理
+        if (GrusAPI.getBoundaryExpDropManager().getExpDropMode().equals(BoundaryExpDropManager.ExpDropMode.ORB)) {
+            double exp = GrusAPI.getBoundaryExpDropManager().getExpDropByEntityType(entity.getType());
+            GrusAPI.spawnChiOrb(entity.getLocation(), (int) exp);
         }
     }
 

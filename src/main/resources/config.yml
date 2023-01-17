@@ -57,13 +57,19 @@ lingem-settings:
     火: "&c火灵根"
     土: "&e土灵根"
 
-# 境界经验值掉落设定
+# 境界修为值掉落设定
 boundary-exp-drop-settings:
   # 境界经验值怪物掉落模式
-  # 可用选项: vanilla/none
+  # 可用选项: vanilla/orb/none
   # vanilla: 原版掉落模式, 适用于无其他RPG元素的生存服务器(当然 生存+RPG 也可以 只需要 MythicMobs 调用指令即可 但数值需要进行更改)
+  # orb: 真气实体掉落方式, 适用于增加修仙的真实与趣味性, 在 vanilla的基础上 改为 击杀怪物掉落真气实体
+  #   但是要注意的是 orb 会改变游戏世界设定将经验堆叠关闭以防止真气球和原版经验球合并
+  #   需要您手动将 spigot.yml 当中的 world-settings.default.merge-radius.exp 修改为 -1 才可使用
   # none: 无掉落模式, 适用于安装有自定义实体的插件的自定义RPG实体服务器
   mode: "vanilla"
+  # 在真气实体掉落方式下, 真气球的显示名
+  chi-orb-name: "&e真气"
+  # 以下数值只能为整数, 默认数值则是利用原版怪物的血量进行编写
   monster:
     blaze: 10
     cave-spider: 6

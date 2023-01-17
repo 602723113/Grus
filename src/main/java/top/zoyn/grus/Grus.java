@@ -1,5 +1,7 @@
 package top.zoyn.grus;
 
+import com.comphenix.protocol.ProtocolLibrary;
+import com.comphenix.protocol.ProtocolManager;
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.java.JavaPlugin;
 import top.zoyn.grus.command.GrusCommand;
@@ -20,6 +22,15 @@ public final class Grus extends JavaPlugin {
     private BoundaryManager boundaryManager;
     private BoundaryExpDropManager boundaryExpDropManager;
     private LingemManager lingemManager;
+    private ProtocolManager protocolManager;
+
+    public static Grus getInstance() {
+        return instance;
+    }
+
+    public void onLoad() {
+        protocolManager = ProtocolLibrary.getProtocolManager();
+    }
 
     @Override
     public void onEnable() {
@@ -54,10 +65,6 @@ public final class Grus extends JavaPlugin {
         lingemManager.save();
     }
 
-    public static Grus getInstance() {
-        return instance;
-    }
-
     public LanguageManager getLanguageManager() {
         return languageManager;
     }
@@ -72,5 +79,9 @@ public final class Grus extends JavaPlugin {
 
     public BoundaryExpDropManager getBoundaryExpDropManager() {
         return boundaryExpDropManager;
+    }
+
+    public ProtocolManager getProtocolManager() {
+        return protocolManager;
     }
 }

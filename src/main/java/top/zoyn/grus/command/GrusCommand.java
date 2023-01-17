@@ -58,7 +58,9 @@ public class GrusCommand implements TabExecutor {
             return Lists.newArrayList(commandMap.keySet());
         }
         if (args.length == 2) {
+            SubCommand subCommand = commandMap.get(args[0]);
+            return subCommand.tabComplete(args);
         }
-        return Lists.newArrayList();
+        return null;
     }
 }

@@ -4,6 +4,8 @@ import me.clip.placeholderapi.expansion.PlaceholderExpansion;
 import org.bukkit.OfflinePlayer;
 import top.zoyn.grus.I18N;
 import top.zoyn.grus.api.GrusAPI;
+import top.zoyn.grus.manager.BoundaryManager;
+import top.zoyn.grus.manager.LingemManager;
 
 public class GrusExpansion extends PlaceholderExpansion {
 
@@ -24,15 +26,18 @@ public class GrusExpansion extends PlaceholderExpansion {
 
     @Override
     public String onRequest(OfflinePlayer player, String params) {
+        BoundaryManager boundaryManager = GrusAPI.getBoundaryManager();
+        LingemManager lingemManager = GrusAPI.getLingemManager();
+
         if (params.equalsIgnoreCase("boundary_level")) {
-            return GrusAPI.getBoundaryManager().getPlayerBoundary(player);
+            return boundaryManager.getDisplayBoundary(boundaryManager.getPlayerBoundary(player));
         }
         if (params.equalsIgnoreCase("boundary_exp")) {
             return "" + GrusAPI.getBoundaryManager().getPlayerBoundaryExp(player);
         }
         if (params.equalsIgnoreCase("lingem")) {
-            if (GrusAPI.getLingemManager().hasLingem(player)) {
-                return GrusAPI.getLingemManager().getPlayerLingem(player).toString();
+            if (lingemManager.hasLingem(player)) {
+                return lingemManager.getPlayerDisplayLingem(player).toString();
             }
             return I18N.NO_LINGEM.getMessage();
         }

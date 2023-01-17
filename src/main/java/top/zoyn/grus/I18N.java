@@ -31,7 +31,9 @@ public enum I18N {
     LINGEM_REMOVE("lingem-remove"),
     LINGEM_RESET("lingem-reset"),
     LINGEM_IS_NOT_EXIST("lingem-is-not-exist"),
+    LINGEM_HAVE_NOT_DISPLAY("lingem-have-not-display"),
 
+    CONSOLE_WRONG_CHI_ORB_SETTING("console-wrong-chi-orb-setting"),
     CONSOLE_SET_LANGUAGE("console-set-language"),
     CONSOLE_LOAD_LINGEM("console-load-lingem"),
     CONSOLE_LOAD_BOUNDARY("console-load-boundary"),

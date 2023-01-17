@@ -1,5 +1,6 @@
 package top.zoyn.grus.command.subcommand;
 
+import com.google.common.collect.Lists;
 import me.clip.placeholderapi.PlaceholderAPI;
 import org.bukkit.Bukkit;
 import org.bukkit.OfflinePlayer;
@@ -9,6 +10,7 @@ import top.zoyn.grus.api.GrusAPI;
 import top.zoyn.grus.command.SubCommand;
 import top.zoyn.grus.manager.BoundaryManager;
 
+import java.util.List;
 import java.util.UUID;
 
 public class BoundaryCommand implements SubCommand {
@@ -99,4 +101,8 @@ public class BoundaryCommand implements SubCommand {
         }
     }
 
+    @Override
+    public List<String> tabComplete(String[] args) {
+        return Lists.newArrayList("look", "add", "remove");
+    }
 }

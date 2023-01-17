@@ -2,10 +2,10 @@ package top.zoyn.grus.manager;
 
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
+import org.bukkit.ChatColor;
 import org.bukkit.OfflinePlayer;
 import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.configuration.file.FileConfiguration;
-import org.bukkit.entity.Player;
 import top.zoyn.grus.Grus;
 import top.zoyn.grus.I18N;
 import top.zoyn.grus.utils.ConfigurationUtils;
@@ -30,6 +30,10 @@ public class LingemManager {
      */
     private Map<UUID, List<String>> playerLingem = Maps.newHashMap();
     private Map<String, Double> lingemChances = Maps.newHashMap();
+    /**
+     * 预设灵根的显示设定
+     */
+    private Map<String, String> lingemDisplay = Maps.newHashMap();
     private File lingemFile;
     private File lingemFolder;
     private FileConfiguration lingemDataConfig;
@@ -62,7 +66,10 @@ public class LingemManager {
 
         ConfigurationSection lingemConfig = Grus.getInstance().getConfig().getConfigurationSection("lingem-settings");
         // config 预设数据
-        lingemConfig.getConfigurationSection("chances").getKeys(false).forEach(section -> lingemChances.put(section, lingemConfig.getDouble("chances." + section)));
+        lingemConfig.getConfigurationSection("chances").getKeys(false)
+                .forEach(section -> lingemChances.put(section, lingemConfig.getDouble("chances." + section)));
+        lingemConfig.getConfigurationSection("display").getKeys(false)
+                .forEach(section -> lingemDisplay.put(section, ChatColor.translateAlternateColorCodes('&', lingemConfig.getString("display." + section))));
 
         Logger.info(I18N.CONSOLE_LOAD_LINGEM.getMessage()
                 .replace("%num%", "" + lingemChances.keySet().size())
@@ -94,7 +101,25 @@ public class LingemManager {
         if (hasLingem(player)) {
             return playerLingem.get(player.getUniqueId());
         }
-        return null;
+        return Lists.newArrayList();
+    }
+
+    public List<String> getPlayerDisplayLingem(OfflinePlayer player) {
+        List<String> playerLingem = getPlayerLingem(player);
+        // 无灵根时
+        if (getPlayerLingem(player).isEmpty()) {
+            return playerLingem;
+        }
+        List<String> display = Lists.newArrayList();
+        playerLingem.forEach(name -> display.add(getLingemDisplayNameByLingem(name)));
+        return display;
+    }
+
+    public String getLingemDisplayNameByLingem(String lingem) {
+        if (hasLingemInDefault(lingem)) {
+            return lingemDisplay.get(lingem);
+        }
+        return I18N.LINGEM_HAVE_NOT_DISPLAY.getMessage();
     }
 
     /**
