@@ -12,6 +12,7 @@ import top.zoyn.grus.utils.MessageUtils;
 
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 
 public class GrusCommand implements TabExecutor {
 
@@ -43,7 +44,7 @@ public class GrusCommand implements TabExecutor {
             return true;
         }
         if (!commandMap.containsKey(args[0])) {
-            MessageUtils.sendPrefixMessage(sender,I18N.UNKNOWN_COMMAND.getMessage());
+            MessageUtils.sendPrefixMessage(sender, I18N.UNKNOWN_COMMAND.getMessage());
             return true;
         }
 
@@ -62,7 +63,9 @@ public class GrusCommand implements TabExecutor {
         }
         if (args.length == 2) {
             SubCommand subCommand = commandMap.get(args[0]);
-            return subCommand.tabComplete(args);
+            if (Objects.nonNull(subCommand)) {
+                return subCommand.tabComplete(args);
+            }
         }
         return null;
     }
