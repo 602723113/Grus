@@ -17,13 +17,11 @@ public class PermissionUtils {
      * @return true if the sender is not op
      * false if the sender is op
      */
-    public static boolean nonAdminAuth(@NotNull CommandSender sender, boolean notify) {
+    public static boolean nonAdminAuth(@NotNull CommandSender sender) {
         if (sender.isOp()) {
             return false;
         } else {
-            if(notify){
-                sender.sendMessage(I18N.MESSAGE_PREFIX.getMessage() + I18N.NO_PERMISSION.getMessage());
-            }
+            sender.sendMessage(I18N.MESSAGE_PREFIX.getMessage() + I18N.NO_PERMISSION.getMessage());
             return true;
         }
     }

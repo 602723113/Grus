@@ -12,7 +12,7 @@ public class ReloadCommand implements SubCommand {
 
     @Override
     public void execute(CommandSender sender, String[] args) {
-        if (PermissionUtils.nonAdminAuth(sender,true)) {
+        if (PermissionUtils.nonAdminAuth(sender)) {
             return;
         }
         Grus.getInstance().reloadConfig();

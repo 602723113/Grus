@@ -19,7 +19,7 @@ public class BoundaryCommand implements SubCommand {
 
     @Override
     public void execute(CommandSender sender, String[] args) {
-        if (PermissionUtils.nonAdminAuth(sender,true)) {
+        if (PermissionUtils.nonAdminAuth(sender)) {
             return;
         }
         if (args.length == 1) {
