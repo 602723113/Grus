@@ -8,6 +8,7 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.command.TabExecutor;
 import top.zoyn.grus.I18N;
 import top.zoyn.grus.command.subcommand.*;
+import top.zoyn.grus.utils.MessageUtils;
 
 import java.util.List;
 import java.util.Map;
@@ -42,7 +43,7 @@ public class GrusCommand implements TabExecutor {
             return true;
         }
         if (!commandMap.containsKey(args[0])) {
-            sender.sendMessage(I18N.MESSAGE_PREFIX.getMessage() + I18N.UNKNOWN_COMMAND.getMessage());
+            MessageUtils.sendPrefixMessage(sender,I18N.UNKNOWN_COMMAND.getMessage());
             return true;
         }
 
@@ -55,7 +56,9 @@ public class GrusCommand implements TabExecutor {
     @Override
     public List<String> onTabComplete(CommandSender sender, Command command, String alias, String[] args) {
         if (args.length == 1) {
-            return Lists.newArrayList(commandMap.keySet());
+            List<String> res = Lists.newArrayList(commandMap.keySet());
+            res.removeIf(s -> !s.startsWith(args[0]));
+            return res;
         }
         if (args.length == 2) {
             SubCommand subCommand = commandMap.get(args[0]);
