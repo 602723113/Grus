@@ -8,6 +8,7 @@ unknown-command: "&cUnknown command!"
 no-permission: "&cYou don't have permission!"
 no-lingem: "&fThere is no lingem."
 you-have-gained-exp: "&eYou have gained &6%exp% &eboundary exp."
+not-number: "&cPlease enter a number."
 help:
   - "&7===== &e[&6Grus&e] &7====="
   - " &e/grus me &6check your stats "

@@ -22,16 +22,15 @@ public class EntityDeathListener implements Listener {
         LivingEntity entity = event.getEntity();
         // 原版掉落处理
         if (GrusAPI.getBoundaryExpDropManager().getExpDropMode().equals(BoundaryExpDropManager.ExpDropMode.VANILLA)) {
-            if (entity.getKiller() != null && entity.getKiller() instanceof Player) {
-                double exp = GrusAPI.getBoundaryExpDropManager().getExpDropByEntityType(entity.getType());
-                // 说明不属于可获得修为的怪物
-                if (exp <= 0) {
-                    return;
-                }
-                Player player = entity.getKiller();
-                GrusAPI.getBoundaryManager().addBoundaryExp(player, exp);
-                player.sendMessage(I18N.YOU_HAVE_GAINED_EXP.getMessage().replace("%exp%", "" + exp));
+            Player player = entity.getKiller();
+            double exp = GrusAPI.getBoundaryExpDropManager().getExpDropByEntityType(entity.getType());
+            if (player == null ||
+                    // 说明不属于可获得修为的怪物
+                    exp <= 0) {
+                return;
             }
+            GrusAPI.getBoundaryManager().addBoundaryExp(player, exp);
+            player.sendMessage(I18N.YOU_HAVE_GAINED_EXP.getMessage().replace("%exp%", "" + exp));
             return;
         }
         // 真气掉落处理

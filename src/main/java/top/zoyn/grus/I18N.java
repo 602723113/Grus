@@ -14,7 +14,7 @@ public enum I18N {
     HELP_LINGEM("help-lingem"),
     RELOAD_DONE("reload-done"),
     WRONG_COMMAND_USAGE("wrong-command-usage"),
-
+    NOT_NUMBER("not-number"),
     MESSAGE_PREFIX("message-prefix"),
     UNKNOWN_COMMAND("unknown-command"),
     NO_PERMISSION("no-permission"),

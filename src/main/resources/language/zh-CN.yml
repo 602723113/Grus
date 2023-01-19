@@ -43,6 +43,7 @@ me:
 you-have-gained-exp: "&e你得到了 &6%exp% &e点修为"
 player-do-not-exist: "&c玩家 %player_name% 不存在!"
 wrong-command-usage: "&c指令用法错误!"
+not-number: "&c你输入的不是一个数字!"
 boundary-look:
   - "&e道友 &f%player_name%&e(&f%player_uuid%&e)"
   - "&e该道友当前的灵根为: %grus_lingem%"
