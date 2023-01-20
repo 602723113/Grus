@@ -150,15 +150,7 @@ public class BoundaryManager {
     public void addBoundaryExp(OfflinePlayer player, double exp) {
         if (hasBoundary(player)) {
             double result = playerBoundary.get(player.getUniqueId()) + exp;
-            if (result < 0) {
-                result = 0;
-            }
-            PlayerBoundaryExpChangeEvent event = new PlayerBoundaryExpChangeEvent(playerBoundary.get(player.getUniqueId()), result, player.getPlayer());
-            Bukkit.getPluginManager().callEvent(event);
-            if (event.isCancelled()) {
-                return;
-            }
-            playerBoundary.put(player.getUniqueId(), result);
+            changePlayerBoundary(player, result);
         } else {
             PlayerBoundaryExpChangeEvent event = new PlayerBoundaryExpChangeEvent(0, exp, player.getPlayer());
             Bukkit.getPluginManager().callEvent(event);
@@ -178,16 +170,26 @@ public class BoundaryManager {
     public void removeBoundaryExp(OfflinePlayer player, double exp) {
         if (hasBoundary(player)) {
             double result = playerBoundary.get(player.getUniqueId()) - exp;
-            if (result < 0) {
-                result = 0;
-            }
-            PlayerBoundaryExpChangeEvent event = new PlayerBoundaryExpChangeEvent(playerBoundary.get(player.getUniqueId()), result, player.getPlayer());
-            Bukkit.getPluginManager().callEvent(event);
-            if (event.isCancelled()) {
-                return;
-            }
-            playerBoundary.put(player.getUniqueId(), result);
+            changePlayerBoundary(player, result);
         }
+    }
+
+    /**
+     * 设置指定的玩家的修为值
+     *
+     * @param player 指定的玩家
+     * @param result 结果修为
+     */
+    private void changePlayerBoundary(OfflinePlayer player, double result) {
+        if (result < 0) {
+            result = 0;
+        }
+        PlayerBoundaryExpChangeEvent event = new PlayerBoundaryExpChangeEvent(playerBoundary.get(player.getUniqueId()), result, player.getPlayer());
+        Bukkit.getPluginManager().callEvent(event);
+        if (event.isCancelled()) {
+            return;
+        }
+        playerBoundary.put(player.getUniqueId(), result);
     }
 
     /**

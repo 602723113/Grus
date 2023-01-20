@@ -2,6 +2,7 @@ package top.zoyn.grus.papi;
 
 import me.clip.placeholderapi.expansion.PlaceholderExpansion;
 import org.bukkit.OfflinePlayer;
+import top.zoyn.grus.Grus;
 import top.zoyn.grus.I18N;
 import top.zoyn.grus.api.GrusAPI;
 import top.zoyn.grus.manager.BoundaryManager;
@@ -21,25 +22,21 @@ public class GrusExpansion extends PlaceholderExpansion {
 
     @Override
     public String getVersion() {
-        return "1.0";
+        return Grus.getInstance().getDescription().getVersion();
     }
 
     @Override
     public String onRequest(OfflinePlayer player, String params) {
         BoundaryManager boundaryManager = GrusAPI.getBoundaryManager();
         LingemManager lingemManager = GrusAPI.getLingemManager();
-
-        if (params.equalsIgnoreCase("boundary_level")) {
-            return boundaryManager.getDisplayBoundary(boundaryManager.getPlayerBoundary(player));
-        }
-        if (params.equalsIgnoreCase("boundary_exp")) {
-            return "" + GrusAPI.getBoundaryManager().getPlayerBoundaryExp(player);
-        }
-        if (params.equalsIgnoreCase("lingem")) {
-            if (lingemManager.hasLingem(player)) {
-                return lingemManager.getPlayerDisplayLingem(player).toString();
-            }
-            return I18N.NO_LINGEM.getMessage();
+        switch (params.toLowerCase()){
+            case "boundary_level":
+                return boundaryManager.getDisplayBoundary(boundaryManager.getPlayerBoundary(player));
+            case "boundary_exp":
+                return "" + GrusAPI.getBoundaryManager().getPlayerBoundaryExp(player);
+            case "lingem":
+                return lingemManager.hasLingem(player) ? lingemManager.getPlayerDisplayLingem(player).toString() : I18N.NO_LINGEM.getMessage();
+            default:
         }
         return null;
     }
