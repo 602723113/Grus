@@ -97,9 +97,32 @@ boundary-exp-drop-settings:
     zombie: 10
     zombie-villager: 10
 
+# 属性设定
 attribute-settings:
-  attributes:
-    气血: 20
-    灵气: 20
-    物理攻击: 1
-    物理防御: 0
+  # 属性系统模式
+  # vanilla: 原版模式, 将会使用 Grus 自带的属性系统, 内容较少, 不会对原版战斗产生直接影响
+  #     可以额外增加属性插件 AttributeSystem, SX-Attribute, AttributePlus, OriginAttribute 等进行自行操作即可
+  # none: 无处理模式, 将会停用 Grus 自带的属性系统
+  mode: vanilla
+
+# 渡劫设定
+god-trial-settings:
+  # 渡劫设定
+  mode: vanilla
+  # 境界设定
+  boundary:
+    练气:
+      # 落雷数量
+      amount: 60
+      # 持续时间
+      period: 60
+      # 雷击伤害
+      damage: 2
+    筑基巅峰:
+      amount: 300
+      period: 300
+      damage: 10
+    结丹:
+      amount: 500
+      period: 300
+      damage: 25
