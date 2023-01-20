@@ -14,8 +14,10 @@ import top.zoyn.grus.utils.Logger;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.List;
 import java.util.Map;
 import java.util.UUID;
+import java.util.stream.Collectors;
 
 /**
  * 玩家境界管理器
@@ -202,5 +204,19 @@ public class BoundaryManager {
         return playerBoundary.containsKey(player.getUniqueId());
     }
 
+    /*
+    * 计算一名玩家的经验值
+    *
+    * @param player 指定的玩家
+    * @return 当前玩家境界的经验值
+    *
+    * */
+    public double getExcessExp(OfflinePlayer player){
+        double playerTotalExp = getPlayerBoundaryExp(player);
+        List<Double> expList =  defaultBoundary.values().stream()
+                .filter(amount -> playerTotalExp > amount)
+                .collect(Collectors.toList());
+        return playerTotalExp - expList.get(expList.size() + 1);
+    }
 
 }

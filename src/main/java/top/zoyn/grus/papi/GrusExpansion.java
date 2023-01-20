@@ -34,6 +34,8 @@ public class GrusExpansion extends PlaceholderExpansion {
                 return boundaryManager.getDisplayBoundary(boundaryManager.getPlayerBoundary(player));
             case "boundary_exp":
                 return "" + GrusAPI.getBoundaryManager().getPlayerBoundaryExp(player);
+            case "boundary_excess_exp":
+                return "" + GrusAPI.getBoundaryManager().getExcessExp(player);
             case "lingem":
                 return lingemManager.hasLingem(player) ? lingemManager.getPlayerDisplayLingem(player).toString() : I18N.NO_LINGEM.getMessage();
             default:
